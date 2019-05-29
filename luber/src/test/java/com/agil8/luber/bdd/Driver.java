@@ -2,10 +2,11 @@ package com.agil8.luber.bdd;
 
 public class Driver {
 
-	public String email;
+	private String email;
 
-	public Driver(String email) {
+	Driver(String email) {
 		this.email = email;
 	}
 
 }
+

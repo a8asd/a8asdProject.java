@@ -9,9 +9,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 
 public class LuberSteps {
-
-	private List<Driver> drivers=new ArrayList<Driver>();
-
+	private List<Driver> drivers = new ArrayList<Driver>();
 	@Given("^ayrton@test\\.com is a driver$")
 	public void ayrton_test_com_is_a_driver() {
 		drivers.add(new Driver("ayrton@test.com"));
