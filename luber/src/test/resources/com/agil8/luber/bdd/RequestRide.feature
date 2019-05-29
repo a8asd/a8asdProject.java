@@ -10,5 +10,5 @@ Feature: Request a ride
   And tony@test.com is a customer
 	When Tony requests a taxi
     Then Tony sees these drivers available
-      | driver email    |
+      | email    |
       | ayrton@test.com |
