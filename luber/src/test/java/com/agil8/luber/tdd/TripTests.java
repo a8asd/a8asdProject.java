@@ -18,7 +18,7 @@ public class TripTests {
 		// Check assignment of Trip Source
 		Location start = new Location(1.23,2.34);
 		Location end = new Location(3.45,4.556);
-		Customer c = new Customer();
+		Customer c = new Customer("fred@test.com");
 		Trip testTrip = new Trip(c,start,end);
 		assertEquals(1.23,testTrip.getTripFrom().getLatitude(),.01);
 		assertEquals(2.34,testTrip.getTripFrom().getLongitude(),.01);

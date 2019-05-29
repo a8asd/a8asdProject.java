@@ -2,6 +2,7 @@ package com.agil8.luber.bdd;
 
 import java.util.ArrayList;
 
+import com.agil8.luber.tdd.Customer;
 import com.agil8.luber.tdd.Location;
 
 import cucumber.api.DataTable;
@@ -30,19 +31,21 @@ public class LuberSteps {
 
 	@Given("^(.*) is a customer$")
 	public void someone_is_a_customer(String someone) {
-		custLocation = new Location(0, 0);		
+		someone_is_a_customer_at_location(someone, 0, 0);		
 	}
 
 	@Given("^(.*) is a customer at (\\-?\\d+\\.\\d+),(\\-?\\d+\\.\\d+)$")
 	public void someone_is_a_customer_at_location(String someone, double x, double y) {
+		Customer customer = new Customer(someone);
 		custLocation = new Location(x, y);
 	}
 
-	@When("^Tony requests a taxi$")
-	public void someone_requests_a_taxi() {
+	@When("^(.*) requests a taxi$")
+	public void someone_requests_a_taxi(String someone) {
+		
 	}
 
-	@Then("^Tony sees these drivers available$")
+	@Then("^(?:.*) sees these drivers available$")
 	public void whoever_sees_these_drivers_available(DataTable table) {
 		table.diff(api.getAvailableDrivers(custLocation));
 	}
