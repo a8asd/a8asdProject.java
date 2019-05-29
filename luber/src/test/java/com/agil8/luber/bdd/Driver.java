@@ -4,7 +4,19 @@ import com.agil8.luber.tdd.Location;
 
 public class Driver {
 
-    private String email;
+    public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setAvailable(boolean available) {
+		this.available = available;
+	}
+
+	private String email;
 	private boolean available;
 	private Location location;
 
@@ -13,7 +25,7 @@ public class Driver {
 		this(email, available, 0, 0);
 	}
 	
-	Driver(String email, boolean available, double latitude, double longitude) {
+	public Driver(String email, boolean available, double latitude, double longitude) {
 		this.email = email;
 		this.available = available;
 		setLocation(latitude, longitude);
