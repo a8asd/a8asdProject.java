@@ -7,6 +7,7 @@ Feature: Request a ride
 
   Scenario: Tony books a ride
   Given ayrton@test.com is a driver
+  And david@test.com is an unavailable driver
   And tony@test.com is a customer
 	When Tony requests a taxi
     Then Tony sees these drivers available
