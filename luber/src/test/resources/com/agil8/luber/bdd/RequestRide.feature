@@ -6,9 +6,9 @@ Feature: Request a ride
   Tony: doesn't often use a taxi and is able-bodied
 
   Scenario: Tony books a ride
-  Given ayrton@test.com is a driver
-  And tony@test.com is a customer
-	When Tony requests a taxi
+    Given ayrton@test.com is a driver
+    And tony@test.com is a customer
+    When Tony requests a taxi
     Then Tony sees these drivers available
-      | driver email    |
+      | email           |
       | ayrton@test.com |
