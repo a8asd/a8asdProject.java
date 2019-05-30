@@ -1,8 +1,6 @@
 package com.agil8.luber.bdd;
 
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 
 import com.agil8.luber.tdd.Location;
 
@@ -27,7 +25,6 @@ public class LuberSteps {
 
 	@Given("^(.*) is a driver at (\\-?\\d+\\.\\d+),(\\-?\\d+\\.\\d+)$")
 	public void someone_is_a_driver_at_location(String driverName, double x, double y) {
-		// Write code here that turns the phrase above into concrete actions
 		api.getDrivers().add(new Driver(driverName, true, x, y));
 	}
 
