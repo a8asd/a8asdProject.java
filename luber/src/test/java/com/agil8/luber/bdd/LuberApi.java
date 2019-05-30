@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import com.agil8.luber.tdd.Location;
+
 public class LuberApi {
 	private List<Driver> drivers;
 
@@ -27,11 +29,11 @@ public class LuberApi {
 		getDrivers().add(new Driver(driverName, false));
 	}
 
-	public List<Driver> getAvailableDrivers() {
+	public List<Driver> getAvailableDrivers(Location customerLocation) {
 		List<Driver> availDrivers = new ArrayList<Driver>();
 		for(Driver driver:drivers)
 		{
-        	if (driver.isAvailable()) 
+        	if (driver.isAvailable() && driver.getLocation().distanceInMiles(customerLocation) < 5.0 ) 
         		availDrivers.add(driver);
         }
 	

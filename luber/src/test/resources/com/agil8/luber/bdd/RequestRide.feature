@@ -14,12 +14,12 @@ Scenario: Tony books a ride
 		| email    |
 		| ayrton@test.com |
 		
-#Scenario: exclude drivers more than 5 miles away 
-#	Given ayrton@test.com is a driver at 51.397928,-1.240943 
-#	And david@test.com is a driver at 51.412505,-1.422734
-#	And tony@test.com is a customer at 51.397576,-1.227461 
-#	When Tony requests a taxi 
-#	Then Tony sees these drivers available 
-#		| email    |
-#		| ayrton@test.com |
+Scenario: exclude drivers more than 5 miles away 
+	Given ayrton@test.com is a driver at 51.397928,-1.240943 
+	And david@test.com is a driver at 51.412505,-1.422734
+	And tony@test.com is a customer at 51.397576,-1.227461 
+	When Tony requests a taxi 
+	Then Tony sees these drivers available 
+		| email    |
+		| ayrton@test.com |
 	
