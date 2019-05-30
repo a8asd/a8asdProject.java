@@ -49,9 +49,4 @@ public class LuberSteps {
 	public void whoever_sees_these_drivers_available(DataTable table) {
 		table.diff(api.getAvailableDrivers(custLocation));
 	}
-
-	@Given("^tony@test\\.com is a customer at a,b$")
-	public void tony_test_com_is_a_customer_at_a_b() {
-		// Write code here that turns the phrase above into concrete actions
-	}
 }
