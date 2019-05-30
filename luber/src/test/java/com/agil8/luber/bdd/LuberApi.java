@@ -1,14 +1,16 @@
 package com.agil8.luber.bdd;
 
 import java.util.ArrayList;
-import java.util.Iterator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.agil8.luber.tdd.Customer;
 import com.agil8.luber.tdd.Location;
 
 public class LuberApi {
 	private List<Driver> drivers;
-
+	private Map<String, Customer> customers = new HashMap<String,Customer>();
 	public LuberApi(List<Driver> drivers) {
 		this.drivers = drivers;
 	}
@@ -38,5 +40,14 @@ public class LuberApi {
         }
 	
 		return availDrivers;
+	}
+
+	public Customer findCustomerByEmail(String someone) {
+		return customers.get(someone);
+	}
+
+	public void addCustomer(Customer customer) {
+		customers.put(customer.getEmail(), customer);
+		
 	}
 }

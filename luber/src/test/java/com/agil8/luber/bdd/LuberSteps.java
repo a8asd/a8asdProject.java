@@ -36,17 +36,17 @@ public class LuberSteps {
 
 	@Given("^(.*) is a customer at (\\-?\\d+\\.\\d+),(\\-?\\d+\\.\\d+)$")
 	public void someone_is_a_customer_at_location(String someone, double x, double y) {
-		Customer customer = new Customer(someone);
+		api.addCustomer(new Customer(someone));
 		custLocation = new Location(x, y);
 	}
 
 	@When("^(.*) requests a taxi$")
 	public void someone_requests_a_taxi(String someone) {
-		
+		Customer customer = api.findCustomerByEmail(someone);
 	}
 
-	@Then("^(?:.*) sees these drivers available$")
-	public void whoever_sees_these_drivers_available(DataTable table) {
+	@Then("^(.*) sees these drivers available$")
+	public void whoever_sees_these_drivers_available(String whoever, DataTable table) {
 		table.diff(api.getAvailableDrivers(custLocation));
 	}
 }
