@@ -12,8 +12,8 @@ public class Driver {
 		this(email, available, 0, 0);
 	}
 	
-	Driver(String s, boolean available, double latitude, double longtitude) {
-		this.email = s;
+	Driver(String email, boolean available, double latitude, double longtitude) {
+		this.email = email;
 		this.available = available;
 		this.latitude = latitude;
 		this.longtitude = longtitude;
