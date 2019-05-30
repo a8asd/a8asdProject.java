@@ -32,7 +32,7 @@ public class LuberSteps {
 	}
 
 	@Given("^(.*) is a customer$")
-	public void someone_is_a_customer() {
+	public void someone_is_a_customer(String someone) {
 		custLocation = new Location(0, 0);		
 	}
 
