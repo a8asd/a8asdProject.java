@@ -4,10 +4,19 @@ public class Driver {
 
     private String email;
 	private boolean available;
+	private double longtitude;
+	private double latitude;
 
-	Driver(String s, boolean available) {
+	Driver(String email, boolean available)
+	{
+		this(email, available, 0, 0);
+	}
+	
+	Driver(String s, boolean available, double latitude, double longtitude) {
 		this.email = s;
 		this.available = available;
+		this.latitude = latitude;
+		this.longtitude = longtitude;
 	}
 
 	public boolean isAvailable() {
