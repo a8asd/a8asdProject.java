@@ -22,10 +22,10 @@ public class LocationTests {
 	}
 	
 	@Test
-	public void distance()
+	public void distanceInMiles()
 	{
-		Location otherLocation = new Location(4,3);
-		Location location = new Location(0,0);
-		assertEquals(5.0, location.distance(otherLocation), 0.001);
+		Location otherLocation = new Location(51.412505, -1.422734);
+		Location location = new Location(51.392769, -1.240040);
+		assertEquals(8.00, location.distance(otherLocation), 0.1);
 	}
 }
