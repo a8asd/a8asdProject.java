@@ -16,10 +16,17 @@ Scenario: Tony books a ride
 		
 Scenario: exclude drivers more than 5 miles away 
 	Given ayrton@test.com is a driver at 51.397928,-1.240943 
-	And david@test.com is a driver at 51.412505,-1.422734
+	And david@test.com is a driver at 51.412505,-1.422734 
 	And tony@test.com is a customer at 51.397576,-1.227461 
 	When tony@test.com requests a taxi 
 	Then Tony sees these drivers available 
 		| email    |
 		| ayrton@test.com |
-	
+		
+Scenario: accept offer 
+	Given ayrton@test.com is a driver at 51.397928,-1.240943 
+	And david@test.com is a driver at 51.412505,-1.422734 
+	And tony@test.com is a customer at 51.397576,-1.227461 
+	And tony@test.com has requested a taxi and seen his offers 
+	When tony@test.com accepts an offer 
+	Then the trip is in the trip list and confirmation received
