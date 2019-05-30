@@ -31,7 +31,7 @@ public class LuberSteps {
 		api.getDrivers().add(new Driver(driverName, true, x, y));
 	}
 
-	@Given("^tony@test\\.com is a customer$")
+	@Given("^(.*) is a customer$")
 	public void someone_is_a_customer() {
 		custLocation = new Location(0, 0);		
 	}
