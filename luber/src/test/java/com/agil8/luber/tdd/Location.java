@@ -17,7 +17,7 @@ public class Location {
 		return latitude;
 	}
 
-	public double distance(Location otherLocation) {
+	public double distanceInMiles(Location otherLocation) {
 //		double latDiff = (this.latitude - otherLocation.getLatitude()) * 69;
 //		double lonDiff = (this.longitude - otherLocation.getLongitude()) * 55;
 //		return Math.sqrt((latDiff * latDiff) + (lonDiff * lonDiff));
