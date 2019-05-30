@@ -15,9 +15,9 @@ Scenario: Tony books a ride
 		| ayrton@test.com |
 		
 Scenario: exclude drivers more than 5 miles away 
-	Given ayrton@test.com is a driver at 51.397928, -1.240943 
-	And david@test.com is a driver at 51.404116, -1.292150
-	And tony@test.com is a customer at 51.397576, -1.227461 
+	Given ayrton@test.com is a driver at 51.397928,-1.240943 
+	And david@test.com is a driver at 51.404116,-1.292150
+	And tony@test.com is a customer at 51.397576,-1.227461 
 	When Tony requests a taxi 
 	Then Tony sees these drivers available 
 		| email    |
