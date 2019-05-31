@@ -8,6 +8,8 @@ public class TripItem {
 	private double fromLatitude;
 	private double fromLongitude;
 	private String customer;
+	private double toLatitude;
+	private double toLongitude;
 
 	public TripItem(Trip trip)
 	{
@@ -16,6 +18,8 @@ public class TripItem {
 		this.driver = trip.getDriver().getEmail();
 		this.fromLatitude = trip.getTripFrom().getLatitude();
 		this.fromLongitude = trip.getTripFrom().getLongitude();
+		this.toLatitude = trip.getTripTo().getLatitude();
+		this.toLongitude = trip.getTripTo().getLongitude();
 	}
 	
 	public String getCustomer()
@@ -48,4 +52,5 @@ public class TripItem {
 	{
 		return this.trip.getTripTo().getLongitude();
 	}
+
 }

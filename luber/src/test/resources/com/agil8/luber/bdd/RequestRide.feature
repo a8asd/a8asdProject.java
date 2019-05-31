@@ -31,8 +31,12 @@ Scenario: accept the offer
 		|from latitude|from longitude|driver|customer|
 		|51.397|-1.227|ayrton@test.com|tony@test.com|
 		
-		
-		
-		
-		
-		
+Scenario: Ayrton is chosen by Tony as his driver 
+	Given ayrton@test.com is a driver 
+	And these trips are defined in the system 
+	And tony@test.com is a customer at 51.397,-1.227 travelling to 51.403,-1.323 
+	When ayrton@test.com views his schedule 
+	Then ayrton@test.com sees these trips 
+		| driver 	  | customer | fromLatitude | fromLongitude | toLatitude | toLongitude |
+		| ayrton@test.com | tony@test.com | 0 	     | 0 		 | 0 	  | 0		|
+	

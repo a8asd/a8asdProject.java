@@ -17,6 +17,9 @@ public class LuberSteps {
 	private Location custLocation;
 	private Location destLocation;
 
+	private ArrayList<Trip> allTrips = new ArrayList<Trip>();
+	private ArrayList<Trip> schedule = new ArrayList<Trip>();
+	
 	@Given("^(.*) is a driver$")
 	public void someone_is_a_driver(String driverName) {
 		api.addDriver(driverName);
@@ -46,7 +49,7 @@ public class LuberSteps {
 
 	@When("^(.*) requests a taxi$")
 	public void someone_requests_a_taxi(String someone) {
-		Customer customer = api.findCustomerByEmail(someone);
+		// Customer customer = api.findCustomerByEmail(someone);
 	}
 
 	@When("^tony@test\\.com accepts ayrton@test\\.com$")
@@ -59,6 +62,7 @@ public class LuberSteps {
 		table.diff(api.getAvailableDrivers(custLocation));
 	}
 
+
 	@Then("^these trips are in the system$")
 	public void these_trips_are_in_the_system(DataTable table) {
 		List<TripItem> tripItems = new ArrayList<TripItem>();
@@ -68,5 +72,41 @@ public class LuberSteps {
 		}
 		
 		table.diff(tripItems);
+	}
+
+	
+	
+	
+	@Given("^these trips are defined in the system$")
+	public void these_trips_are_in_the_system() {
+		Trip ayrtonTrip = new Trip(new Customer("tony@test.com"), new Location(0, 0), new Location(0, 0));
+		ayrtonTrip.setDriver(new Driver("ayrton@test.com", true));
+		Trip davidTrip = new Trip(new Customer("anyone@test.com"), new Location(0, 0), new Location(0, 0));
+		davidTrip.setDriver(new Driver("david@test.com", true));
+
+		allTrips.add(ayrtonTrip);
+		allTrips.add(davidTrip);
+	}
+
+	@When("^ayrton@test\\.com views his schedule$")
+	public void ayrton_test_com_views_his_schedule() {
+		for(Trip currentTrip : allTrips)
+		{
+			if(currentTrip.getDriver().getEmail().equals("ayrton@test.com"))
+			{
+				schedule.add(currentTrip);
+			}
+		}
+			}
+
+	@Then("^ayrton@test\\.com sees these trips$")
+	public void ayrton_test_com_sees_these_trips(DataTable table) {
+		java.util.List<TripItem> tripitems = new ArrayList<TripItem>();
+		for(Trip trip: schedule) {
+			TripItem item = new TripItem(trip);
+			tripitems.add(item);
+		}
+		table.diff(tripitems);
+		
 	}
 }
