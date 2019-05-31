@@ -9,7 +9,7 @@ public class Trip {
 	Location tripFrom;
 	Location tripTo;
 	
-	Trip (Customer c, Location f, Location t)
+	public Trip (Customer c, Location f, Location t)
 	{
 		this.customer=c;
 		this.tripFrom=f;

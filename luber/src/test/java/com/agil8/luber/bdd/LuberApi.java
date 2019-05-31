@@ -7,33 +7,30 @@ import java.util.Map;
 
 import com.agil8.luber.tdd.Customer;
 import com.agil8.luber.tdd.Location;
+import com.agil8.luber.tdd.Trip;
 
 public class LuberApi {
-	private List<Driver> drivers;
+	private Map<String, Driver> drivers = new HashMap<String,Driver>();
 	private Map<String, Customer> customers = new HashMap<String,Customer>();
-	public LuberApi(List<Driver> drivers) {
-		this.drivers = drivers;
+	private List<Trip> schedule = new ArrayList<Trip>();
+	public LuberApi() {
 	}
 
-	public List<Driver> getDrivers() {
+	public Map<String, Driver> getDrivers() {
 		return drivers;
 	}
 
-	public void setDrivers(List<Driver> drivers) {
-		this.drivers = drivers;
-	}
-	
 	public void addDriver(String driverName) {
-		getDrivers().add(new Driver(driverName, true));
+		getDrivers().put(driverName, new Driver(driverName, true));
 	}
 
 	public void addUnavailableDriver(String driverName) {
-		getDrivers().add(new Driver(driverName, false));
+		getDrivers().put(driverName, new Driver(driverName, false));
 	}
 
 	public List<Driver> getAvailableDrivers(Location customerLocation) {
 		List<Driver> availDrivers = new ArrayList<Driver>();
-		for(Driver driver:drivers)
+		for(Driver driver:drivers.values())
 		{
         	if (driver.isAvailable() && driver.getLocation().distanceInMiles(customerLocation) < 5.0 ) 
         		availDrivers.add(driver);
@@ -49,5 +46,15 @@ public class LuberApi {
 	public void addCustomer(Customer customer) {
 		customers.put(customer.getEmail(), customer);
 		
+	}
+
+	public void createTrip(String customer, String driver, Location from, Location to) {
+		Trip newTrip = new Trip(customers.get(customer), from, to);
+		newTrip.setDriver(drivers.get(driver));
+		schedule.add(newTrip);
+	}
+
+	public List<Trip> getSchedule() {
+		return this.schedule;
 	}
 }
