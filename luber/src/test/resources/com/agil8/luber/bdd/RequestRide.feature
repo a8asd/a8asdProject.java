@@ -16,10 +16,18 @@ Scenario: Tony books a ride
 		
 Scenario: exclude drivers more than 5 miles away 
 	Given ayrton@test.com is a driver at 51.397928,-1.240943 
-	And david@test.com is a driver at 51.412505,-1.422734
+	And david@test.com is a driver at 51.412505,-1.422734 
 	And tony@test.com is a customer at 51.397576,-1.227461 
 	When tony@test.com requests a taxi 
 	Then Tony sees these drivers available 
 		| email    |
 		| ayrton@test.com |
+		
+Scenario: Ayrton is chosen by Tony as his driver 
+	Given ayrton@test.com is a driver 
+	And these trips are in the system 
+	When ayrton@test.com views his schedule 
+	Then ayrton@test.com sees these trips 
+		| driverEmail 	  | customerEmail | fromLatitude | fromLongitude | toLatitude | toLongitude |
+		| ayrton@test.com | tony@test.com | 0 		     | 0 			 | 0 		  | 0 			|
 	
