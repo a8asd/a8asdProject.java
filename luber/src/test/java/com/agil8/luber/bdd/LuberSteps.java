@@ -1,5 +1,8 @@
 package com.agil8.luber.bdd;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +22,7 @@ public class LuberSteps {
 
 	private ArrayList<Trip> allTrips = new ArrayList<Trip>();
 	private ArrayList<Trip> schedule = new ArrayList<Trip>();
+	private boolean tripStatus;
 	
 	@Given("^(.*) is a driver$")
 	public void someone_is_a_driver(String driverName) {
@@ -54,7 +58,7 @@ public class LuberSteps {
 
 	@When("^tony@test\\.com accepts ayrton@test\\.com$")
 	public void tony_test_com_accepts_ayrton_test_com() {
-		api.createTrip("tony@test.com","ayrton@test.com",custLocation, destLocation);
+		this.tripStatus = api.createTrip("tony@test.com","ayrton@test.com",custLocation, destLocation);
 	}
 
 	@Then("^(.*) sees these drivers available$")
@@ -106,7 +110,13 @@ public class LuberSteps {
 			TripItem item = new TripItem(trip);
 			tripitems.add(item);
 		}
-		table.diff(tripitems);
 		
+		table.diff(tripitems);	
 	}
+	
+	@Then("^the response status is (true|false)$")
+	public void the_response_status_is_true(boolean expectedStatus) {
+		assertEquals(expectedStatus, tripStatus);
+	}
+
 }

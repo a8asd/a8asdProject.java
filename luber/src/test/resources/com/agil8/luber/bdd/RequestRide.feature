@@ -30,6 +30,7 @@ Scenario: accept the offer
 	Then these trips are in the system 
 		|from latitude|from longitude|driver|customer|
 		|51.397|-1.227|ayrton@test.com|tony@test.com|
+	And the response status is true
 		
 Scenario: Ayrton is chosen by Tony as his driver 
 	Given ayrton@test.com is a driver 

@@ -10,9 +10,10 @@ import com.agil8.luber.tdd.Location;
 import com.agil8.luber.tdd.Trip;
 
 public class LuberApi {
-	private Map<String, Driver> drivers = new HashMap<String,Driver>();
-	private Map<String, Customer> customers = new HashMap<String,Customer>();
+	private Map<String, Driver> drivers = new HashMap<String, Driver>();
+	private Map<String, Customer> customers = new HashMap<String, Customer>();
 	private List<Trip> schedule = new ArrayList<Trip>();
+
 	public LuberApi() {
 	}
 
@@ -30,12 +31,11 @@ public class LuberApi {
 
 	public List<Driver> getAvailableDrivers(Location customerLocation) {
 		List<Driver> availDrivers = new ArrayList<Driver>();
-		for(Driver driver:drivers.values())
-		{
-        	if (driver.isAvailable() && driver.getLocation().distanceInMiles(customerLocation) < 5.0 ) 
-        		availDrivers.add(driver);
-        }
-	
+		for (Driver driver : drivers.values()) {
+			if (driver.isAvailable() && driver.getLocation().distanceInMiles(customerLocation) < 5.0)
+				availDrivers.add(driver);
+		}
+
 		return availDrivers;
 	}
 
@@ -45,15 +45,21 @@ public class LuberApi {
 
 	public void addCustomer(Customer customer) {
 		customers.put(customer.getEmail(), customer);
-		
+
 	}
 
-	public void createTrip(String customer, String driver, Location from, Location to) {
-		Trip newTrip = new Trip(customers.get(customer), from, to);
-		newTrip.setDriver(drivers.get(driver));
-		schedule.add(newTrip);
+	public boolean createTrip(String customer, String driver, Location from, Location to) {
+		try {
+			Trip newTrip = new Trip(customers.get(customer), from, to);
+			newTrip.setDriver(drivers.get(driver));
+			schedule.add(newTrip);
+			return true;
+		} catch (Exception ex) {
+			return false;
+		}
 	}
 
+	
 	public List<Trip> getSchedule() {
 		return this.schedule;
 	}
