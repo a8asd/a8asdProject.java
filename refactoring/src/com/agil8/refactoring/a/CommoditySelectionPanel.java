@@ -12,7 +12,7 @@ package com.agil8.refactoring.a;
  * 
  * Using only your automated refactoring tool:
  * 	Extract methods to make it more readable
- * 		1. name the first condition "commoditiesAreReadyForUpdate"
+ * 		1. name the first condition "hasCommoditiesReadyForUpdate"
  * 		2. extract listbox.clear to a method called "clearDisplay"
  * 		3. extract the loop to a method called "updateCommodities"
  * 	Remember: no typing code, you are only allowed to type responses to the tool
@@ -24,29 +24,13 @@ public class CommoditySelectionPanel {
 	private Broker broker;
 
 	public void update() {
-		if (isCommodities()) {
-			clearList();
-			updateCommodities();
-		}
-	}
-
-	private void updateCommodities() {
-		for(Commodity commodity:commodities) {
-			if(shouldAddToView(commodity)) {
-				listbox.add(commodity.getView());
+		if (commodities.size()>0 && commodities.getSource().equals("local")) {
+			listbox.clear();
+			for(Commodity commodity:commodities) {
+				if(commodity.isTwilight()&&commodity.match(broker)) {
+					listbox.add(commodity.getView());
+				}
 			}
 		}
-	}
-
-	private boolean shouldAddToView(Commodity commodity) {
-		return commodity.isTwilight()&&commodity.match(broker);
-	}
-
-	private void clearList() {
-		listbox.clear();
-	}
-
-	private boolean isCommodities() {
-		return commodities.size()>0 && commodities.getSource().equals("local");
 	}
 }
